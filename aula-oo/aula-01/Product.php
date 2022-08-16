@@ -4,11 +4,11 @@ class Product{
     // Properties
     public $id;
     public $image;
-    public $name; 
+    public $name;
     public $price; 
 
     //Method Construct
-    function __construct($id, $image,  $nome,  $price){
+    function __construct($id, $image,  $name,  $price){
         $this->id = $id;
         $this->image = $image;
         $this->name = $name;
@@ -26,12 +26,12 @@ class Product{
         echo $this->price;
     }
 
-    function setName($novoNome){
-        $this->nome = $novoNome;
+    function setName($newName){
+        $this->name = $newName;
     }
 
     function getName(){
-        echo $this->nome;
+        echo $this->name;
     }  
 }
 
