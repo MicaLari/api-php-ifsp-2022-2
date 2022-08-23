@@ -25,6 +25,6 @@ echo "Valor = ";
 $prod2->getPrice();
 
 echo "<br>Nome = ";
-$prod2->getPrice();
+$prod2->getName();
 
 ?>
