@@ -1,10 +1,7 @@
 <?php
 class UserController{
-    function add(){
+    function signup(){
         echo 'Add user';
-    }
-    function delete(){
-        echo 'delete user';
     }
 }
 ?>

@@ -15,18 +15,16 @@
         ){
         $controller = $urlArray[0].'Controller';
         $action = $urlArray[1];
-    }else{
-        echo 'Endereço da API inválido!';
-        die; //Para o codigo
-    }
-        
-    if(file_exists(CONTROLLERS_FOLDER.$controller.'.php')){
-        $obj = new $controller();
-        if(method_exists($obj, $action)){
-            $obj->$action();
-            die;
+        if(file_exists(CONTROLLERS_FOLDER.$controller.'.php')){
+            $obj = new $controller();
+            if(method_exists($obj, $action)){
+                $obj->$action();
+                die;
+            }
         }
     }
 
-    echo 'Endereço da API inválido!';
+
+$output = new Output();
+$output->notFound(); 
 ?>
