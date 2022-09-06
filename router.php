@@ -2,6 +2,7 @@
     //importa o arquivo de configuração
     require 'config.php';
     require HELPERS_FOLDER.'autoloaders.php';
+    
     //pega a Url requisitada
     $url = $_SERVER['REQUEST_URI'];
     //Remove a base da url
@@ -14,7 +15,7 @@
         $urlArray[1] != ''
         ){
         $controller = $urlArray[0].'Controller';
-        $action = $urlArray[1];
+        $action = str_replace('-', '', $urlArray[1]);
         if(file_exists(CONTROLLERS_FOLDER.$controller.'.php')){
             $obj = new $controller();
             if(method_exists($obj, $action)){
