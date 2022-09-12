@@ -35,6 +35,39 @@ class User {
         }
     }
 
+    function list(){
+        $db = new Database();
+        $conn = $db->connect();
+        
+        try{
+            $stmt = $conn->prepare("SELECT * FROM cadastro");
+            $stmt->execute();
+            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $conn = null;
+            return $cadastro;
+        }catch(PDOException $e) {
+            $db->dbError($e);
+        }
+    }
+
+    function byId(){
+        $db = new Database();
+        $conn = $db->connect();
+
+        try{
+            $stmt = $conn->prepare("SELECT * FROM cadastro");
+            $stmt->execute();
+            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $conn = null;
+            return $cadastro;
+        }catch(PDOException $e) {
+            $db->dbError($e);
+        }
+    }
+
+    
+
+
 }
 
 ?>
