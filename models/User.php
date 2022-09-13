@@ -42,7 +42,7 @@ class User {
         try{
             $stmt = $conn->prepare("SELECT * FROM cadastro");
             $stmt->execute();
-            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $cadastro = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $conn = null;
             return $cadastro;
         }catch(PDOException $e) {
@@ -55,11 +55,12 @@ class User {
         $conn = $db->connect();
 
         try{
-            $stmt = $conn->prepare("SELECT * FROM cadastro");
+            $stmt = $conn->prepare("SELECT * FROM cadastro WHERE id = :id;");
+            $stmt->bindParam(':id', $this->id);
             $stmt->execute();
-            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $conn = null;
-            return $cadastro;
+            return $user;
         }catch(PDOException $e) {
             $db->dbError($e);
         }
