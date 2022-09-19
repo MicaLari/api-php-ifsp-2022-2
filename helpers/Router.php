@@ -14,6 +14,8 @@ class Router {
             $controller = $urlArray[0].'Controller';
             $removeParams = explode('?', $urlArray[1]);
             $action = str_replace('-', '', $removeParams[0]);
+
+            
             if(file_exists(CONTROLLERS_FOLDER.$controller.'.php')){
                 $obj = new $controller();
                 if(method_exists($obj, $action)){
