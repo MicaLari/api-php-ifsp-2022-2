@@ -58,7 +58,7 @@ class User {
             $stmt = $conn->prepare("SELECT * FROM cadastro WHERE id = :id;");
             $stmt->bindParam(':id', $this->id);
             $stmt->execute();
-            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
             $conn = null;
             return $user;
         }catch(PDOException $e) {
