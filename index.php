@@ -3,9 +3,7 @@
 require 'config.php';
 require HELPERS_FOLDER.'autoloaders.php';
 
-$route = new Router();
-$route->gateKeeper();
+Router::gateKeeper();
 
-$output = new Output();
-$output->notFound();
+Output::notFound();
 ?>
