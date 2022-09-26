@@ -1,7 +1,8 @@
 <?php
 class Router {
     
-    function gateKeeper(){
+    static function gateKeeper(){
+        self::handleCORS();
         //pega a url requisitada
         $url = $_SERVER['REQUEST_URI'];
         //remove a base da url
@@ -27,11 +28,19 @@ class Router {
     }
     
     
-    function allowedMethod($method){
+    static function allowedMethod($method){
         if ($_SERVER['REQUEST_METHOD'] !== $method){
             $result['error']['message'] = 'Method '.$_SERVER['REQUEST_METHOD'].' not allowed for this route!';
-            $output = new Output();
-            $output->response($result, 405);
+            Output::response($result, 405);
+        }
+    }
+
+    static function handleCORS(){
+        if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+            header("Access-Control-Allow-Origin: *");
+            header("Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE, PUT");
+                //header("Access-Control-Allow-Headers: Access-Token");
+            die;
         }
     }
 }
