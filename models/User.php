@@ -16,8 +16,7 @@ class User {
     }
 
     function create(){
-        $db = new Database();
-        $conn = $db->connect();
+        $conn = Database::connect();
         
         try{
             $stmt = $conn->prepare("INSERT INTO cadastro (name, email, pass, avatar)
@@ -36,8 +35,7 @@ class User {
     }
 
     function list(){
-        $db = new Database();
-        $conn = $db->connect();
+        $conn = Database::connect();
         
         try{
             $stmt = $conn->prepare("SELECT * FROM cadastro");
@@ -51,8 +49,7 @@ class User {
     }
 
     function byId(){
-        $db = new Database();
-        $conn = $db->connect();
+        $conn = Database::connect();
 
         try{
             $stmt = $conn->prepare("SELECT * FROM cadastro WHERE id = :id;");
@@ -66,7 +63,25 @@ class User {
         }
     }
 
-    
+    function delete(){
+        $conn = Database::connect();
+        
+        try{
+            $stmt = $conn->prepare("DELETE FROM cadastro WHERE id = :id;");
+            $stmt->bindParam(':id', $this->id);
+            $stmt->execute();
+            $rowsAffected = $stmt->rowCount();
+            $conn = null;
+            if($rowsAffected){
+                return true;
+            } else {
+                return false;
+            }
+        }catch(PDOException $e) {
+            $db->dbError($e);
+        }
+    }
+
 
 
 }
