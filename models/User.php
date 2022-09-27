@@ -44,7 +44,7 @@ class User {
             $conn = null;
             return $cadastro;
         }catch(PDOException $e) {
-            $db->dbError($e);
+            Database::dbError($e);
         }
     }
 
