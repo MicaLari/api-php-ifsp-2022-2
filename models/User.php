@@ -30,7 +30,7 @@ class User {
             $conn = null;
             return $id;
         }catch(PDOException $e) {
-            $db->dbError($e);
+            Database::dbError($e);
         }
     }
 
@@ -59,7 +59,7 @@ class User {
             $conn = null;
             return $user;
         }catch(PDOException $e) {
-            $db->dbError($e);
+            Database::dbError($e);
         }
     }
 
@@ -78,7 +78,7 @@ class User {
                 return false;
             }
         }catch(PDOException $e) {
-            $db->dbError($e);
+            Database::dbError($e);
         }
     }
 
