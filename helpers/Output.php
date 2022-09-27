@@ -10,8 +10,7 @@ class Output{
     }
     
     static function notFound(){
-        $result['message'] = "API endpoint not Found";
-        $this->response($result, 404);
+        $resul["error"]['message'] = "API endpoint not Found";
         self::response($result, 404);
     }
 }
