@@ -82,6 +82,47 @@ class User {
         }
     }
 
+    function update(){
+        $conn = Database::connect();
+        
+        try{
+            $stmt = $conn->prepare("UPDATE users SET name = :name, email = :email, avatar = :avatar WHERE id = :id;");
+            $stmt->bindParam(':id', $this->id);
+            $stmt->bindParam(':name', $this->name);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':avatar', $this->avatar);
+            $stmt->execute();
+            $rowsAffected = $stmt->rowCount();
+            if($rowsAffected){
+                return true;
+            } else {
+                return false;
+            }
+        }catch(PDOException $e) {
+            Database::dbError($e);
+        }
+    }
+
+    function login(){
+        $conn = Database::connect();
+        
+        try{
+            $stmt = $conn->prepare(" SELECT id FROM cadastro WHERE email = :email AND pass = :pass");
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':pass', $this->pass);
+            $stmt->execute();
+
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(is_array($user)){
+                return $user['id'];
+            } else {
+                return false;
+            }
+        }catch(PDOException $e) {
+            Database::dbError($e);
+        }
+    }
+
 
 
 }
